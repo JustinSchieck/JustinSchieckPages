@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #000000, #6a0dad); /* Black to purple gradient */
+  /* Removed hover effect */
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100vh; /* This ensures the main tag fills the full height of the viewport */
+  color: white;
+  padding: 0 2rem;
+}
