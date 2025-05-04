@@ -1,9 +1,33 @@
 <main>
+  <header
+    class="fixed top-0 left-0 w-full bg-[#0f0f1a]/90 backdrop-blur-md z-50 shadow"
+  >
+    <nav
+      class="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-12 py-4"
+    >
+      <div class="text-white text-xl font-bold tracking-wide">MyPortfolio</div>
+      <ul class="flex space-x-6 text-sm font-medium text-white">
+        <li><a href="#hero" class="hover:text-blue-400 transition">Home</a></li>
+        <li>
+          <a href="#about" class="hover:text-blue-400 transition">About</a>
+        </li>
+        <li>
+          <a href="#projects" class="hover:text-blue-400 transition"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
   <canvas id="circuit-bg" class="absolute inset-0 z-0"></canvas>
 
   <!-- HERO SECTION -->
   <div
-    class="w-full max-w-7xl mx-auto hero-container z-10 relative flex flex-col md:flex-row items-center justify-between gap-12 px-6 sm:px-12 min-h-screen"
+    id="hero"
+    class="mt-20 w-full max-w-7xl mx-auto hero-container z-10 relative flex flex-col md:flex-row items-center justify-between gap-12 px-6 sm:px-12 min-h-screen"
   >
     <!-- Left: Text content -->
     <div class="glass-card md:max-w-[55%] w-full">
@@ -39,75 +63,154 @@
   </div>
 
   <section
-    id="projects"
-    class="w-full px-6 sm:px-12 py-24 bg-gray-100 text-center"
+    id="about"
+    class="scroll-mt-20 py-24 px-6 sm:px-12 bg-[#1a1a25] text-gray-200 border-t border-gray-800"
   >
-    <h2 class="text-3xl font-bold mb-10 text-blue-700">Projects</h2>
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 text-center text-blue-700">
+        About Me
+      </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       <div
-        *ngFor="let project of projects"
-        class="relative group cursor-pointer"
-        (click)="openModal(project)"
+        class="max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-12"
       >
-        <img
-          [src]="project.image || 'assets/projects/project-placeholder.png'"
-          [alt]="project.title"
-          class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-        />
+        <!-- Left: Text -->
+        <div class="md:w-1/2 text-lg leading-relaxed space-y-4">
+          <p>
+            I'm a passionate full-stack software engineer with experience in
+            frontend, backend, databases, and cloud infrastructure.
+          </p>
+          <p>
+            My favorite work blends creative design with technical depth—whether
+            it's building beautiful UI components, designing scalable APIs, or
+            automating workflows with cloud tools like AWS.
+          </p>
+          <p>
+            Outside of code, I enjoy solving tricky UX problems, mentoring devs,
+            and constantly learning new patterns and tech.
+          </p>
+        </div>
 
-        <!-- Overlay on hover -->
-        <div
-          class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-        >
-          <h3 class="text-white text-xl font-semibold">{{ project.title }}</h3>
+        <!-- Right: Skills component -->
+        <div class="md:w-1/2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div
+              *ngFor="let skill of skills"
+              class="flex flex-col items-center opacity-0 transition-opacity duration-700"
+              #skillCard
+            >
+              <div class="relative w-24 h-24">
+                <svg class="absolute top-0 left-0 w-full h-full">
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="36"
+                    stroke="#e5e7eb"
+                    stroke-width="6"
+                    fill="none"
+                  />
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="36"
+                    [attr.stroke-dasharray]="226"
+                    [attr.stroke-dashoffset]="226 - (skill.level / 100) * 226"
+                    stroke="#3b82f6"
+                    stroke-width="6"
+                    fill="none"
+                    stroke-linecap="round"
+                    class="transition-all duration-700"
+                  />
+                </svg>
+                <img
+                  [src]="skill.icon"
+                  [alt]="skill.name"
+                  class="absolute inset-0 w-12 h-12 m-auto"
+                />
+              </div>
+              <p class="mt-2 text-blue-700 font-semibold">{{ skill.name }}</p>
+            </div>
+          </div>
+          <!-- Or whatever component name you use -->
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div
-      *ngIf="selectedProject"
-      class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
-      (click)="closeModal()"
-    >
-      <!-- Modal content: stop event from closing -->
-      <div
-        class="bg-white rounded-lg p-6 max-w-lg w-full text-left relative shadow-xl transform scale-95 opacity-0 animate-fade-in"
-        [ngClass]="{
-          'animate-fade-in': animationState === 'in',
-          'animate-fade-out': animationState === 'out',
-        }"
-        (click)="$event.stopPropagation()"
-      >
-        <!-- Modal content continues here -->
-        <button
-          (click)="closeModal()"
-          class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl"
-        >
-          &times;
-        </button>
+  </section>
 
-        <div *ngIf="selectedProject.image" class="mb-4">
+  <section
+    id="projects"
+    class="scroll-mt-20 py-24 px-6 sm:px-12 bg-[#11111a] text-white border-t border-gray-700"
+  >
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-10 text-blue-700">Projects</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div
+          *ngFor="let project of projects"
+          class="relative group cursor-pointer"
+          (click)="openModal(project)"
+        >
           <img
-            [src]="selectedProject.image"
-            [alt]="selectedProject.title"
-            class="w-full rounded-md shadow-md max-h-64 object-cover"
+            [src]="project.image || 'assets/projects/project-placeholder.png'"
+            [alt]="project.title"
+            class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
           />
+
+          <!-- Overlay on hover -->
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+          >
+            <h3 class="text-white text-xl font-semibold">
+              {{ project.title }}
+            </h3>
+          </div>
         </div>
-
-        <h3 class="text-2xl font-bold text-blue-700 mb-4">
-          {{ selectedProject.title }}
-        </h3>
-        <p class="text-gray-700 mb-6">{{ selectedProject.description }}</p>
-
-        <a
-          *ngIf="selectedProject.link"
-          [href]="selectedProject.link"
-          target="_blank"
-          class="inline-block px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition"
+      </div>
+      <!-- Modal -->
+      <div
+        *ngIf="selectedProject"
+        class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
+        (click)="closeModal()"
+      >
+        <!-- Modal content: stop event from closing -->
+        <div
+          class="bg-white rounded-lg p-6 max-w-lg w-full text-left relative shadow-xl transform scale-95 opacity-0 animate-fade-in"
+          [ngClass]="{
+            'animate-fade-in': animationState === 'in',
+            'animate-fade-out': animationState === 'out',
+          }"
+          (click)="$event.stopPropagation()"
         >
-          View Live
-        </a>
+          <!-- Modal content continues here -->
+          <button
+            (click)="closeModal()"
+            class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl"
+          >
+            &times;
+          </button>
+
+          <div *ngIf="selectedProject.image" class="mb-4">
+            <img
+              [src]="selectedProject.image"
+              [alt]="selectedProject.title"
+              class="w-full rounded-md shadow-md max-h-64 object-cover"
+            />
+          </div>
+
+          <h3 class="text-2xl font-bold text-blue-700 mb-4">
+            {{ selectedProject.title }}
+          </h3>
+          <p class="text-gray-700 mb-6">{{ selectedProject.description }}</p>
+
+          <a
+            *ngIf="selectedProject.link"
+            [href]="selectedProject.link"
+            target="_blank"
+            class="inline-block px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition"
+          >
+            View Live
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -115,7 +218,7 @@
   <!-- CONTACT SECTION -->
   <section
     id="contact"
-    class="w-full px-6 sm:px-12 py-24 bg-gradient-to-b from-gray-900 to-purple-900 text-white text-center"
+    class="scroll-mt-20 py-24 px-6 sm:px-12 bg-gradient-to-b from-gray-900 to-purple-900 text-white text-center"
   >
     <h2 class="text-3xl font-bold mb-4 text-blue-500">Let’s Connect</h2>
     <p class="text-lg max-w-xl mx-auto">

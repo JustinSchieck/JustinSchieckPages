@@ -1,4 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 
 interface Project {
   title: string;
@@ -7,12 +14,19 @@ interface Project {
   link?: string;
 }
 
+export interface SkillCategory {
+  name: string;
+  icon: string;
+  level: number; // 0 to 100
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
+  @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;
   projects: Project[] = [
     {
       title: 'NeuroSpark Task App',
@@ -31,6 +45,29 @@ export class HomeComponent {
       description:
         'A clean, responsive weather dashboard that uses OpenWeatherMap API and reactive forms.',
       link: 'https://your-app-link.com',
+    },
+  ];
+
+  skills: SkillCategory[] = [
+    {
+      name: 'Frontend',
+      icon: 'assets/icons/frontend.png',
+      level: 90, // percent
+    },
+    {
+      name: 'Backend',
+      icon: 'assets/icons/backend.png',
+      level: 80,
+    },
+    {
+      name: 'People Skills',
+      icon: 'assets/icons/people.png',
+      level: 75,
+    },
+    {
+      name: 'Server',
+      icon: 'assets/icons/server.png',
+      level: 60,
     },
   ];
 
@@ -54,5 +91,23 @@ export class HomeComponent {
   @HostListener('document:keydown.escape', ['$event'])
   handleEscapeKey(event: KeyboardEvent): void {
     this.closeModal();
+  }
+
+  ngAfterViewInit(): void {
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-up');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // triggers when about 30% visible
+      },
+    );
+
+    this.skillCards.forEach((el) => observer.observe(el.nativeElement));
   }
 }
