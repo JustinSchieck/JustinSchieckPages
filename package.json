@@ -1,5 +1,5 @@
 {
-  "name": "personal-site",
+  "name": "justinschieck.github.io",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -27,6 +27,7 @@
     "@angular/cli": "^17.3.7",
     "@angular/compiler-cli": "^17.3.0",
     "@types/jasmine": "~5.1.0",
+    "angular-cli-ghpages": "^2.0.3",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.26.0",
     "eslint-plugin-tailwindcss": "^3.18.0",
