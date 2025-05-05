@@ -51,23 +51,23 @@ export class HomeComponent implements AfterViewInit {
   skills: SkillCategory[] = [
     {
       name: 'Frontend',
-      icon: 'assets/icons/frontend.png',
-      level: 90, // percent
+      icon: 'assets/icons/frontend_purple.svg',
+      level: 95, // percent
     },
     {
       name: 'Backend',
-      icon: 'assets/icons/backend.png',
-      level: 80,
-    },
-    {
-      name: 'People Skills',
-      icon: 'assets/icons/people.png',
-      level: 75,
+      icon: 'assets/icons/backend_purple.svg',
+      level: 60,
     },
     {
       name: 'Server',
-      icon: 'assets/icons/server.png',
-      level: 60,
+      icon: 'assets/icons/server_purple.svg',
+      level: 40,
+    },
+    {
+      name: 'People Skills',
+      icon: 'assets/icons/softskills_purple.svg',
+      level: 90,
     },
   ];
 
@@ -94,7 +94,37 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const observer = new IntersectionObserver(
+    // Scroll spy: highlight navbar links
+    const sectionIds = ['hero', 'about', 'projects', 'contact'];
+
+    // Two seperate observers means no clashing on the page elements
+    const scrollSpyObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('id');
+          const link = document.querySelector(`.nav-link[href="#${id}"]`);
+
+          if (entry.isIntersecting && link) {
+            document.querySelectorAll('.nav-link').forEach((el) => {
+              el.classList.remove('text-blue-400');
+            });
+            link.classList.add('text-blue-400');
+          }
+        });
+      },
+      {
+        rootMargin: '-50% 0px -49% 0px',
+        threshold: 0.01,
+      },
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) scrollSpyObserver.observe(el);
+    });
+
+    // Skills animation on scroll
+    const skillObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -104,10 +134,10 @@ export class HomeComponent implements AfterViewInit {
         });
       },
       {
-        threshold: 0.3, // triggers when about 30% visible
+        threshold: 0.3,
       },
     );
 
-    this.skillCards.forEach((el) => observer.observe(el.nativeElement));
+    this.skillCards.forEach((el) => skillObserver.observe(el.nativeElement));
   }
 }
