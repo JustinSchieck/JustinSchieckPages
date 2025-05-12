@@ -3,9 +3,13 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnInit,
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import { Container, ILoadParams, tsParticles } from '@tsparticles/engine';
+import { NgParticlesService } from '@tsparticles/angular';
+import { loadFull } from 'tsparticles';
 
 interface Project {
   title: string;
@@ -25,10 +29,10 @@ export interface SkillCategory {
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;
-
   currentYear: number = new Date().getFullYear();
+  id = 'tsparticles';
   projects: Project[] = [
     {
       title: 'NeuroSpark Task App',
@@ -73,9 +77,51 @@ export class HomeComponent implements AfterViewInit {
     },
   ];
 
+  particlesOptions = {
+    fullScreen: {
+      enable: false, // Disable full screen to keep within section
+      zIndex: 0,
+    },
+    particles: {
+      number: {
+        value: 100,
+      },
+      color: {
+        value: '#ffffff',
+      },
+      links: {
+        enable: true,
+        distance: 100,
+        color: '#ffffff',
+        opacity: 0.4,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 1,
+      },
+      shape: {
+        type: 'circle',
+      },
+      opacity: {
+        value: 0.5,
+      },
+      size: {
+        value: {
+          min: 2,
+          max: 3,
+        },
+      },
+    },
+    background: {
+      color: 'transparent',
+    },
+  };
+
   selectedProject: Project | null = null;
 
   animationState = 'in'; // 'in' or 'out'
+  constructor(private readonly ngParticlesService: NgParticlesService) {}
 
   openModal(project: Project) {
     this.selectedProject = project;
@@ -141,5 +187,20 @@ export class HomeComponent implements AfterViewInit {
     );
 
     this.skillCards.forEach((el) => skillObserver.observe(el.nativeElement));
+  }
+
+  ngOnInit(): void {
+    this.ngParticlesService.init(async () => {
+      await loadFull(tsParticles);
+
+      await tsParticles.load({
+        id: 'tsparticles', // Matches the div id in HTML
+        ...this.particlesOptions,
+      });
+    });
+  }
+
+  particlesLoaded(container: Container): void {
+    console.log(container);
   }
 }

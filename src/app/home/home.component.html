@@ -22,145 +22,151 @@
   <!-- <canvas id="circuit-bg" class="absolute inset-0 z-0"></canvas> -->
 
   <!-- HERO SECTION -->
-  <div
-    id="hero"
-    class="mt-20 w-full max-w-7xl mx-auto hero-container z-10 relative flex flex-col md:flex-row items-center justify-between gap-12 px-6 sm:px-12 min-h-screen"
+
+  <section
+    id="landing"
+    class="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
   >
-    <div class="glass-card md:max-w-[55%] w-full">
-      <h1 class="text-4xl font-bold mb-4 text-primary">Hello, and welcome!</h1>
-      <h2 class="text-xl text-gray-200 font-medium mb-6">
-        I'm a full-stack software engineer with a broad range of skills—from
-        crafting responsive frontends and building robust backends, to writing
-        efficient SQL queries and working with AWS cloud infrastructure.
-      </h2>
-      <p class="text-lg text-gray-200">
-        🚧 This site is currently under construction—kind of like me before my
-        morning coffee: functional, but not quite ready for public interaction.
-        ☕️
-      </p>
-      <div
-        class="mt-8 flex flex-wrap justify-center gap-8 text-4xl text-primary"
-      >
-        <a
-          href="https://www.linkedin.com/in/yourprofile"
-          target="_blank"
-          class="hover:text-accent-indigo transition"
-          aria-label="LinkedIn"
+    <!-- Particle Background -->
+    <div id="tsparticles" class="absolute inset-0">
+      <ngx-particles
+        [id]="id"
+        [options]="particlesOptions"
+        (particlesLoaded)="particlesLoaded($event)"
+      ></ngx-particles>
+    </div>
+
+    <div
+      id="hero"
+      class="w-full max-w-7xl mx-auto hero-container z-10 relative flex flex-col md:flex-row items-center justify-between gap-12 px-6 sm:px-12 min-h-screen"
+    >
+      <!-- Left: Text content -->
+      <div class="glass-card md:max-w-[55%] w-full">
+        <h1 class="text-4xl font-bold mb-4 text-primary">
+          Hello, and welcome!
+        </h1>
+        <h2 class="text-xl text-gray-200 font-medium mb-6">
+          I'm a full-stack software engineer with a broad range of skills—from
+          crafting responsive frontends and building robust backends, to writing
+          efficient SQL queries and working with AWS cloud infrastructure.
+        </h2>
+        <p class="text-lg text-gray-200">
+          🚧 This site is currently under construction—kind of like me before my
+          morning coffee: functional, but not quite ready for public
+          interaction. ☕️
+        </p>
+        <div
+          class="mt-8 flex flex-wrap justify-center gap-8 text-4xl text-primary"
         >
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-        <a
-          href="https://github.com/yourusername"
-          target="_blank"
-          class="hover:text-accent-indigo transition"
-          aria-label="GitHub"
-        >
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a
-          href="assets/resume-placeholder.pdf"
-          download
-          class="hover:text-accent-indigo transition"
-          aria-label="Download Resume"
-        >
-          <i class="fa-solid fa-file-arrow-down"></i>
-        </a>
-        <a
-          href="mailto:you@example.com"
-          class="hover:text-accent-indigo transition"
-          aria-label="Email"
-        >
-          <i class="fa-solid fa-envelope"></i>
-        </a>
+          <a
+            href="https://www.linkedin.com/in/yourprofile"
+            target="_blank"
+            class="hover:text-accent-indigo transition"
+            aria-label="LinkedIn"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            class="hover:text-accent-indigo transition"
+            aria-label="GitHub"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="assets/resume-placeholder.pdf"
+            download
+            class="hover:text-accent-indigo transition"
+            aria-label="Download Resume"
+          >
+            <i class="fa-solid fa-file-arrow-down"></i>
+          </a>
+          <a
+            href="mailto:you@example.com"
+            class="hover:text-accent-indigo transition"
+            aria-label="Email"
+          >
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Placeholder image -->
+      <div class="w-full md:max-w-[35%]">
+        <img
+          src="assets/placeholder.png"
+          alt="placeholder"
+          class="w-full max-w-sm rounded-lg opacity-80 shadow-lg"
+        />
       </div>
     </div>
-    <div class="w-full md:max-w-[35%]">
-      <img
-        src="assets/placeholder.png"
-        alt="placeholder"
-        class="w-full max-w-sm rounded-lg opacity-80 shadow-lg"
-      />
-    </div>
-  </div>
+  </section>
 
   <section
     id="about"
-    class="scroll-mt-20 py-24 px-6 sm:px-12 bg-[#1a1a25] text-gray-200 border-t border-gray-800"
+    class="scroll-mt-20 py-16 px-6 sm:px-12 bg-gradient-to-b from-[#1a1a25] to-[#11111a] text-gray-200 border-t border-gray-800"
   >
     <div
-      class="min-h-[80vh] flex items-start md:items-center justify-center flex-col max-w-6xl mx-auto"
+      class="min-h-[70vh] flex flex-col md:flex-row justify-between items-center gap-12 max-w-6xl mx-auto"
     >
-      <h2 class="text-3xl font-bold mb-12 text-center text-primary">
-        About Me
-      </h2>
-      <div
-        class="max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-12"
-      >
-        <div class="md:w-1/2 text-lg leading-relaxed space-y-4">
-          <p>
-            I'm a passionate full-stack software engineer with experience in
-            frontend, backend, databases, and cloud infrastructure.
-          </p>
-          <p>
-            My favorite work blends creative design with technical depth—whether
-            it's building beautiful UI components, designing scalable APIs, or
-            automating workflows with cloud tools like AWS.
-          </p>
-          <p>
-            Outside of code, I enjoy solving tricky UX problems, mentoring devs,
-            and constantly learning new patterns and tech.
-          </p>
-        </div>
-        <div class="md:w-1/2">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div
-              *ngFor="let skill of skills"
-              class="flex flex-col items-center opacity-0 transition-opacity duration-700"
-              #skillCard
-            >
-              <div class="relative w-24 h-24">
-                <svg class="absolute top-0 left-0 w-full h-full">
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r="36"
-                    stroke="#e5e7eb"
-                    stroke-width="6"
-                    fill="none"
-                  />
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r="36"
-                    [attr.stroke-dasharray]="226"
-                    [attr.stroke-dashoffset]="226 - (skill.level / 100) * 226"
-                    stroke="#a855f7"
-                    stroke-width="6"
-                    fill="none"
-                    stroke-linecap="round"
-                    class="transition-all duration-700"
-                  />
-                </svg>
-                <div
-                  class="absolute inset-0 w-12 h-12 m-auto text-white fill-current"
-                >
-                  <img
-                    [src]="skill.icon"
-                    [alt]="skill.name"
-                    class="w-12 h-12"
-                  />
-                </div>
-                <!-- <img
-                      [src]="isDarkMode ? skill.darkIcon : skill.lightIcon"
-                      [alt]="skill.name"
-                      class="w-12 h-12"
-                    /> -->
-              </div>
-              <p class="mt-2 text-primary-light font-semibold">
-                {{ skill.name }}
-              </p>
+      <!-- Left: Description -->
+      <div class="md:w-1/2 space-y-6">
+        <h2 class="text-3xl font-bold text-primary mb-4">About Me</h2>
+        <p class="text-lg leading-relaxed">
+          I'm a passionate full-stack software engineer with experience in
+          frontend, backend, databases, and cloud infrastructure.
+        </p>
+        <p class="text-lg leading-relaxed">
+          My favorite work blends creative design with technical depth—whether
+          it's building beautiful UI components, designing scalable APIs, or
+          automating workflows with cloud tools like AWS.
+        </p>
+        <p class="text-lg leading-relaxed">
+          Outside of code, I enjoy solving tricky UX problems, mentoring devs,
+          and constantly learning new patterns and tech.
+        </p>
+      </div>
+
+      <!-- Right: Skill Cards -->
+      <div class="md:w-1/2 grid grid-cols-2 gap-8">
+        <div
+          *ngFor="let skill of skills"
+          class="card animate-slide-up flex flex-col items-center p-6 rounded-lg bg-gray-800/50 backdrop-blur-md shadow-md transition-transform duration-300 hover:scale-105"
+          #skillCard
+        >
+          <div class="relative w-24 h-24 mb-4">
+            <svg class="absolute top-0 left-0 w-full h-full">
+              <circle
+                cx="50%"
+                cy="50%"
+                r="36"
+                stroke="#e5e7eb"
+                stroke-width="6"
+                fill="none"
+              />
+              <circle
+                cx="50%"
+                cy="50%"
+                r="36"
+                [attr.stroke-dasharray]="226"
+                [attr.stroke-dashoffset]="226 - (skill.level / 100) * 226"
+                stroke="#a855f7"
+                stroke-width="6"
+                fill="none"
+                stroke-linecap="round"
+                class="transition-all duration-700"
+              />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <img
+                [src]="skill.icon"
+                [alt]="skill.name"
+                class="w-12 h-12 text-white"
+              />
             </div>
           </div>
+          <p class="text-lg font-semibold text-primary">{{ skill.name }}</p>
         </div>
       </div>
     </div>

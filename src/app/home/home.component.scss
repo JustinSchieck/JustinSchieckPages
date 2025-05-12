@@ -12,6 +12,16 @@ main {
   overflow: hidden;
 }
 
+// .section-header {
+//   @apply text-3xl font-bold text-primary mb-4;
+// }
+// .card {
+//   @apply bg-gray-800/50 backdrop-blur-md p-4 rounded-lg shadow-md;
+// }
+// .btn {
+//   @apply text-white bg-primary hover:bg-accent transition ease-in-out duration-300 px-4 py-2 rounded-lg;
+// }
+
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -73,4 +83,150 @@ footer {
     margin: 0;
     font-size: 0.875rem;
   }
+}
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#landing {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .animate-gradient {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #6a0dad, #11111a, #3b82f6, #1a1a25);
+    background-size: 300% 300%;
+    animation: gradientShift 6s ease infinite;
+    opacity: 0.8;
+    z-index: -1;
+  }
+
+  .glass-card {
+    background: rgba(26, 26, 37, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  h1, h2, p {
+    color: #e5e7eb;
+  }
+
+  a:hover {
+    color: #a855f7;
+  }
+}
+
+#landing {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind content */
+  pointer-events: none; /* Prevent interaction with particles */
+}
+
+#landing .hero-container {
+  position: relative;
+  z-index: 1; /* Ensures content is on top */
+}
+
+
+/*************** About Section ***************/
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease forwards;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#about {
+  position: relative;
+  background: linear-gradient(180deg, #34344b, #11111a);
+}
+
+#about::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./../../assets/diagmonds-light.png');
+  opacity: 0.10; /* Very subtle effect */
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+/*************** Contact Section ***************/
+@keyframes subtleMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+#projects {
+  position: relative;
+  background: linear-gradient(180deg, #11111a, #1e1e57);
+}
+
+#projects::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./../../assets/cubes.png');
+  opacity: 0.13;
+  animation: subtleMove 90s linear infinite;
+  z-index: 0;
+  pointer-events: none;
 }
