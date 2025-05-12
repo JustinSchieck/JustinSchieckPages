@@ -1,7 +1,7 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #000000, #6a0dad); /* Black to purple gradient */
+  background: linear-gradient(to bottom, #000000, #818cf8); /* Black to purple gradient */
   /* Removed hover effect */
 }
 
@@ -55,4 +55,22 @@ main {
 
 .animate-slide-up {
   animation: slide-up 0.6s ease forwards;
+}
+
+
+footer {
+  background-color: #1a1a25;
+  color: #e5e7eb;
+
+  a {
+    transition: color 0.3s ease;
+    &:hover {
+      color: #a855f7; /* Matches your primary color */
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
 }

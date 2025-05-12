@@ -27,6 +27,8 @@ export interface SkillCategory {
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;
+
+  currentYear: number = new Date().getFullYear();
   projects: Project[] = [
     {
       title: 'NeuroSpark Task App',
