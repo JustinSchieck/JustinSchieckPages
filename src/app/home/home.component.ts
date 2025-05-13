@@ -7,6 +7,8 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+
 import { Container, ILoadParams, tsParticles } from '@tsparticles/engine';
 import { NgParticlesService } from '@tsparticles/angular';
 import { loadFull } from 'tsparticles';
@@ -121,7 +123,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedProject: Project | null = null;
 
   animationState = 'in'; // 'in' or 'out'
-  constructor(private readonly ngParticlesService: NgParticlesService) {}
+  constructor(
+    private readonly ngParticlesService: NgParticlesService,
+    private viewportScroller: ViewportScroller,
+  ) {}
 
   openModal(project: Project) {
     this.selectedProject = project;
@@ -202,5 +207,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   particlesLoaded(container: Container): void {
     console.log(container);
+  }
+
+  scrollToSection(sectionId: string): void {
+    this.viewportScroller.scrollToAnchor(sectionId);
   }
 }

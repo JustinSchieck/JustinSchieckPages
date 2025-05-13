@@ -6,8 +6,6 @@ import { WipComponent } from './work-in-progress/wip.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'wip', component: WipComponent },
-  { path: '', redirectTo: '/wip', pathMatch: 'full' },
-  { path: '**', redirectTo: '/wip' },
 ];
 
 @NgModule({
