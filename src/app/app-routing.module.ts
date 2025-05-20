@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { WipComponent } from './work-in-progress/wip.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '**', component: HomeComponent },
   { path: 'wip', component: WipComponent },
 ];
 
