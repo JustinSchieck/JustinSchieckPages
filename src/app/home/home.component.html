@@ -5,7 +5,9 @@
     <nav
       class="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-12 py-4"
     >
-      <div class="text-white text-xl font-bold tracking-wide">MyPortfolio</div>
+      <div class="text-white text-xl font-bold tracking-wide">
+        Justin Schieck
+      </div>
       <ul class="flex space-x-6 text-sm font-medium text-white">
         <li>
           <a (click)="scrollToSection('hero')" class="nav-link cursor-pointer"
@@ -49,54 +51,77 @@
       class="w-full max-w-7xl mx-auto hero-container z-10 relative flex flex-col md:flex-row items-center justify-between gap-12 px-6 sm:px-12 min-h-screen"
     >
       <!-- Left: Text content -->
-      <div class="glass-card md:max-w-[60%] w-full">
+      <div class="glass-card md:max-w-[70%] w-full">
         <h1 class="text-4xl font-bold mb-4 text-primary">
-          Hello, and welcome!
+          Hi, I'm Justin Schieck!
         </h1>
         <h2 class="text-xl text-gray-200 font-medium mb-6">
-          I'm a full-stack software engineer with a broad range of skills—from
-          crafting responsive frontends and building robust backends, to writing
-          efficient SQL queries and working with AWS cloud infrastructure.
+          Full-stack engineer who transforms complex problems into elegant
+          solutions. I build responsive frontends, design scalable backends,
+          optimize databases, and architect cloud infrastructure that works as
+          hard as I do.
         </h2>
         <p class="text-lg text-gray-200">
           🚧 This site is currently under construction—kind of like me before my
           morning coffee: functional, but not quite ready for public
           interaction. ☕️
         </p>
+        <!-- Combined action row with responsive layout -->
         <div
-          class="mt-8 flex flex-wrap justify-center gap-8 text-4xl text-primary"
+          class="mt-6 flex flex-col md:flex-row md:justify-between md:items-center gap-6"
         >
-          <a
-            href="https://www.linkedin.com/in/yourprofile"
-            target="_blank"
-            class="hover:text-accent-indigo transition"
-            aria-label="LinkedIn"
+          <!-- Left: Navigation buttons -->
+          <div class="flex flex-wrap gap-4">
+            <a
+              (click)="scrollToSection('about')"
+              class="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-md transition-colors duration-300 flex items-center justify-center shadow-lg"
+            >
+              <i class="fa-solid fa-user mr-2"></i>About Me
+            </a>
+            <a
+              (click)="scrollToSection('projects')"
+              class="px-6 py-3 bg-transparent border-2 border-primary hover:bg-primary/10 text-primary font-medium rounded-md transition-colors duration-300 flex items-center justify-center shadow-lg"
+            >
+              <i class="fa-solid fa-code mr-2"></i>See My Work
+            </a>
+          </div>
+
+          <!-- Right: Social icons -->
+          <div
+            class="flex justify-start md:justify-end gap-6 text-3xl text-primary"
           >
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            class="hover:text-accent-indigo transition"
-            aria-label="GitHub"
-          >
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a
-            href="assets/resume-placeholder.pdf"
-            download
-            class="hover:text-accent-indigo transition"
-            aria-label="Download Resume"
-          >
-            <i class="fa-solid fa-file-arrow-down"></i>
-          </a>
-          <a
-            href="mailto:you@example.com"
-            class="hover:text-accent-indigo transition"
-            aria-label="Email"
-          >
-            <i class="fa-solid fa-envelope"></i>
-          </a>
+            <a
+              href="https://www.linkedin.com/in/yourprofile"
+              target="_blank"
+              class="hover:text-accent-indigo transition-colors duration-300"
+              aria-label="LinkedIn"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              class="hover:text-accent-indigo transition-colors duration-300"
+              aria-label="GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="assets/resume-placeholder.pdf"
+              download
+              class="hover:text-accent-indigo transition-colors duration-300"
+              aria-label="Download Resume"
+            >
+              <i class="fa-solid fa-file-arrow-down"></i>
+            </a>
+            <a
+              href="mailto:you@example.com"
+              class="hover:text-accent-indigo transition-colors duration-300"
+              aria-label="Email"
+            >
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -116,14 +141,17 @@
     class="scroll-mt-20 py-16 px-6 sm:px-12 bg-gradient-to-b from-[#1a1a25] to-[#11111a] text-gray-200 border-t border-gray-800"
   >
     <div
-      class="min-h-[70vh] flex flex-col md:flex-row justify-between items-center gap-12 max-w-6xl mx-auto"
+      class="min-h-[70vh] flex flex-col md:flex-row justify-between items-center gap-12 max-w-8xl mx-auto"
     >
       <!-- Left: Description -->
       <div class="md:w-1/2 space-y-6">
         <h2 class="text-3xl font-bold text-primary mb-4">About Me</h2>
         <p class="text-lg leading-relaxed">
-          I'm a passionate full-stack software engineer with experience in
-          frontend, backend, databases, and cloud infrastructure.
+          I'm passionate about creating software that makes a difference.
+          Whether you're looking for a developer to join your team or
+          collaborate on a project, you'll find my blend of technical expertise
+          and creative problem-solving valuable. Explore my work below or reach
+          out directly—I'm always up for an interesting conversation about tech.
         </p>
         <p class="text-lg leading-relaxed">
           My favorite work blends creative design with technical depth—whether
@@ -140,8 +168,9 @@
       <div class="md:w-1/2 grid grid-cols-2 gap-8">
         <div
           *ngFor="let skill of skills"
-          class="card animate-slide-up flex flex-col items-center p-6 rounded-lg bg-gray-800/50 backdrop-blur-md shadow-md transition-transform duration-300 hover:scale-105"
+          class="card animate-slide-up flex flex-col items-center p-6 rounded-lg bg-gray-800/50 backdrop-blur-md shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
           #skillCard
+          (click)="openSkillModal(skill)"
         >
           <div class="relative w-24 h-24 mb-4">
             <svg class="absolute top-0 left-0 w-full h-full">
@@ -174,7 +203,91 @@
               />
             </div>
           </div>
-          <p class="text-lg font-semibold text-primary">{{ skill.name }}</p>
+          <p class="text-lg font-semibold text-primary-light">
+            {{ skill.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Detail Modal -->
+    <!-- Skill Detail Modal -->
+    <div
+      *ngIf="selectedSkill"
+      class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
+      (click)="closeSkillModal()"
+    >
+      <div
+        class="bg-gray-900 text-white rounded-lg p-8 max-w-2xl w-full text-left relative shadow-xl transform scale-95 opacity-0 animate-fade-in overflow-y-auto max-h-[90vh]"
+        [ngClass]="{
+          'animate-fade-in': skillAnimationState === 'in',
+          'animate-fade-out': skillAnimationState === 'out',
+        }"
+        (click)="$event.stopPropagation()"
+      >
+        <button
+          (click)="closeSkillModal()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
+        >
+          &times;
+        </button>
+
+        <!-- Modal Header -->
+        <div class="flex items-center mb-6">
+          <img
+            [src]="selectedSkill.icon"
+            [alt]="selectedSkill.name"
+            class="w-12 h-12 mr-4"
+          />
+          <h3 class="text-2xl font-bold text-primary">
+            {{ selectedSkill.name }} Skills
+          </h3>
+        </div>
+
+        <!-- Description -->
+        <p class="text-gray-300 mb-6">
+          {{ selectedSkill.description }}
+        </p>
+
+        <!-- Proficiency Level -->
+        <div class="mb-8">
+          <p class="text-sm text-gray-400 mb-1">Overall Proficiency</p>
+          <div class="w-full bg-gray-700 rounded-full h-2.5">
+            <div
+              class="bg-primary h-2.5 rounded-full transition-all duration-500"
+              [style.width.%]="selectedSkill.level"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Tech Stack Grid -->
+        <h4 class="text-xl font-semibold mb-4 text-primary-light">
+          Technologies
+        </h4>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+          <div
+            *ngFor="let tech of selectedSkill.techStack"
+            class="flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-2"
+            >
+              <img
+                [src]="tech.icon"
+                [alt]="tech.name"
+                class="w-8 h-8"
+                onerror="this.onerror=null; this.src='assets/tech-icons/placeholder.svg';"
+              />
+            </div>
+            <p class="text-center text-sm mb-1">{{ tech.name }}</p>
+            <!-- Individual proficiency bars -->
+            <div class="w-full bg-gray-700 rounded-full h-1.5 mt-1">
+              <div
+                class="bg-primary h-1.5 rounded-full"
+                [style.width.%]="tech.proficiency"
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -185,29 +298,55 @@
     class="scroll-mt-20 py-24 px-6 sm:px-12 bg-[#11111a] text-white border-t border-gray-700"
   >
     <div
-      class="min-h-[80vh] flex items-start md:items-center justify-center flex-col max-w-6xl mx-auto"
+      class="min-h-[80vh] flex items-start md:items-center justify-center flex-col max-w-7xl mx-auto"
     >
       <h2 class="text-3xl font-bold mb-10 text-primary">Projects</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <!-- Adjusted grid with responsive columns and larger gap -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
         <div
           *ngFor="let project of projects"
           class="relative group cursor-pointer"
           (click)="openModal(project)"
         >
-          <img
-            [src]="project.image || 'assets/projects/project-placeholder.png'"
-            [alt]="project.title"
-            class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-          />
+          <!-- Project card with conditional rendering - increased height -->
+          <div
+            *ngIf="project.image"
+            class="w-full h-80 overflow-hidden rounded-lg shadow-lg"
+          >
+            <img
+              [src]="project.image"
+              [alt]="project.title"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+
+          <!-- Stylish placeholder when no image is available - increased height -->
+          <div
+            *ngIf="!project.image"
+            class="w-full h-80 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg flex items-center justify-center p-6 transition-transform duration-300 group-hover:scale-105 border border-gray-700"
+          >
+            <div class="text-center">
+              <div class="text-primary text-5xl mb-4">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <h3 class="text-white text-2xl font-semibold">
+                {{ project.title }}
+              </h3>
+            </div>
+          </div>
+
+          <!-- Hover overlay (appears on both image and non-image cards) -->
           <div
             class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
           >
-            <h3 class="text-white text-xl font-semibold">
+            <h3 class="text-white text-2xl font-semibold">
               {{ project.title }}
             </h3>
           </div>
         </div>
       </div>
+
+      <!-- Modal remains unchanged -->
       <div
         *ngIf="selectedProject"
         class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
