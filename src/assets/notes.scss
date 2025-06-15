@@ -1,0 +1,365 @@
+::host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #000000,
+    #818cf8
+  ); /* Black to purple gradient */
+}
+
+main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Animation Keyframes */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-out-modal {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-fade-out {
+  animation: fade-out-modal 0.2s ease-in forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease forwards;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes subtleMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Footer Styles */
+footer {
+  background-color: #1a1a25;
+  color: #e5e7eb;
+
+  a {
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #a855f7;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}
+
+/* Landing Section - Keep original structure */
+#landing {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .animate-gradient {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #6a0dad, #11111a, #3b82f6, #1a1a25);
+    background-size: 300% 300%;
+    animation: gradientShift 6s ease infinite;
+    opacity: 0.8;
+    z-index: -1;
+  }
+
+  .glass-card {
+    background: rgba(26, 26, 37, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  h1,
+  h2,
+  p {
+    color: #e5e7eb;
+  }
+
+  a:hover {
+    color: #a855f7;
+  }
+}
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#landing .hero-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* About Section */
+#about {
+  position: relative;
+  background: linear-gradient(180deg, #34344b, #11111a);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("./../../assets/diagmonds-light.png");
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+.card {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Projects Section */
+#projects {
+  position: relative;
+  background: linear-gradient(180deg, #11111a, #1e1e57);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("./../../assets/cubes.png");
+    opacity: 0.13;
+    animation: subtleMove 90s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  #landing .hero-container {
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  #landing .glass-card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: none;
+  }
+
+  #landing .glass-card h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  #landing .glass-card h2 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  #landing .glass-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  #landing .hero-container > div:last-child {
+    width: 100%;
+    max-width: 280px;
+    order: -1;
+  }
+
+  #landing .hero-container img {
+    width: 200px;
+    height: 200px;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  #landing .glass-card .mt-6 {
+    margin-top: 1.5rem;
+  }
+
+  #landing .glass-card .flex.flex-wrap {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  #landing .glass-card .flex.flex-wrap a {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  #landing .text-3xl {
+    font-size: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  #landing a,
+  #landing button {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #landing .hero-container {
+    padding-top: 100px;
+    gap: 3rem;
+  }
+
+  #landing .glass-card {
+    max-width: 65%;
+  }
+
+  #landing .hero-container > div:last-child {
+    max-width: 35%;
+  }
+
+  #landing .hero-container img {
+    max-width: 300px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  #landing .hero-container {
+    padding-top: 70px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 1.5rem;
+  }
+
+  #landing .glass-card {
+    padding: 1rem;
+  }
+
+  #landing .glass-card h1 {
+    font-size: 1.75rem;
+  }
+
+  #landing .glass-card h2 {
+    font-size: 1rem;
+  }
+
+  #landing .hero-container img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* AODA/Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  #landing .hero-container,
+  #landing .glass-card,
+  #landing img {
+    animation: none;
+    transition: none;
+  }
+
+  .animate-fade-in,
+  .animate-fade-out,
+  .animate-slide-up {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  #landing .glass-card {
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #ffffff;
+  }
+
+  #landing .glass-card h1,
+  #landing .glass-card h2,
+  #landing .glass-card p {
+    color: #ffffff;
+  }
+}
+
+/* Focus improvements for keyboard navigation */
+#landing a:focus,
+#landing button:focus,
+.card:focus,
+nav a:focus {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+}

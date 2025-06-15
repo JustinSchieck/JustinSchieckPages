@@ -1,7 +1,11 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #000000, #818cf8); /* Black to purple gradient */
+  background: linear-gradient(
+    to bottom,
+    #000000,
+    #818cf8
+  ); /* Black to purple gradient */
   /* Removed hover effect */
 }
 
@@ -67,7 +71,6 @@ main {
   animation: slide-up 0.6s ease forwards;
 }
 
-
 footer {
   background-color: #1a1a25;
   color: #e5e7eb;
@@ -84,7 +87,6 @@ footer {
     font-size: 0.875rem;
   }
 }
-
 
 @keyframes gradientShift {
   0% {
@@ -124,7 +126,9 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
-  h1, h2, p {
+  h1,
+  h2,
+  p {
     color: #e5e7eb;
   }
 
@@ -155,7 +159,6 @@ footer {
   z-index: 1; /* Ensures content is on top */
 }
 
-
 /*************** About Section ***************/
 @keyframes slide-up {
   0% {
@@ -180,7 +183,6 @@ footer {
   transform: scale(1.05);
 }
 
-
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -199,20 +201,23 @@ footer {
 }
 
 #about::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url('./../../assets/diagmonds-light.png');
-  opacity: 0.10; /* Very subtle effect */
+  background-image: url("./../../assets/diagmonds-light.png");
+  opacity: 0.1; /* Very subtle effect */
   z-index: 0;
   pointer-events: none;
 }
 
-
 /*************** Contact Section ***************/
 @keyframes subtleMove {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 #projects {
@@ -221,10 +226,10 @@ footer {
 }
 
 #projects::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url('./../../assets/cubes.png');
+  background-image: url("./../../assets/cubes.png");
   opacity: 0.13;
   animation: subtleMove 90s linear infinite;
   z-index: 0;
