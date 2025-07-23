@@ -1,0 +1,32 @@
+footer {
+  background-color: #1a1a25;
+  color: #e5e7eb;
+  padding: 1.5rem 0;
+  border-top: 1px solid #374151;
+  text-align: center;
+
+  p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  a {
+    color: #e5e7eb;
+    margin: 0 0.75rem;
+    transition: color 0.2s;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  a:hover {
+    color: #a855f7;
+  }
+
+  .footer-icons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}

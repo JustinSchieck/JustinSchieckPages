@@ -7,9 +7,22 @@ import { HomeComponent } from './home/home.component';
 
 import { CommonModule } from '@angular/common';
 import { NgxParticlesModule } from '@tsparticles/angular';
+import { FooterComponent } from './home/components/footer/footer.component';
+import { AboutComponent } from './home/components/about/about.component';
+import { HeaderComponent } from './home/components/header/header.component';
+import { HeroComponent } from './home/components/hero/hero.component';
+import { ProjectsComponent } from './home/components/projects/projects.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    FooterComponent,
+    AboutComponent,
+    HeaderComponent,
+    HeroComponent,
+    ProjectsComponent,
+  ],
   imports: [CommonModule, BrowserModule, AppRoutingModule, NgxParticlesModule],
   providers: [],
   bootstrap: [AppComponent],

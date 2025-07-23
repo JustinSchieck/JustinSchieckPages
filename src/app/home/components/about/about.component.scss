@@ -1,0 +1,104 @@
+#about {
+  position: relative;
+  background: linear-gradient(180deg, #34344b, #11111a);
+  padding: 4rem 0;
+  min-height: 70vh;
+}
+
+#about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, #a855f7 0%, transparent 70%);
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card {
+  background: rgba(31, 41, 55, 0.7);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.25);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.25);
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal styles */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #181825;
+  color: #e5e7eb;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  max-width: 32rem;
+  width: 100%;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  position: relative;
+  animation: fade-in 0.3s ease-out forwards;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-out-modal {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-fade-out {
+  animation: fade-out-modal 0.2s ease-in forwards;
+}

@@ -1,17 +1,12 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
-  HostListener,
   OnInit,
+  AfterViewInit,
   QueryList,
+  ElementRef,
   ViewChildren,
+  HostListener,
 } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
-
-import { Container, ILoadParams, tsParticles } from '@tsparticles/engine';
-import { NgParticlesService } from '@tsparticles/angular';
-import { loadFull } from 'tsparticles';
 
 interface Project {
   title: string;
@@ -37,12 +32,23 @@ interface TechItem {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChildren('skillCard') skillCards!: QueryList<ElementRef>;
   currentYear: number = new Date().getFullYear();
+
+  // Hero section
   id = 'tsparticles';
+  particlesOptions: any = {}; // Set your particles options here
+  particlesLoaded = (event: any) => {};
+
+  // About section
+  skillCategories: SkillCategory[] = []; // Populate with your skills
+  selectedSkill: SkillCategory | null = null;
+  skillAnimationState: string = '';
+
+  // Projects section
   projects: Project[] = [
     {
       title: 'NeuroSpark Task App',
@@ -62,358 +68,52 @@ export class HomeComponent implements OnInit, AfterViewInit {
       link: 'https://your-app-link.com',
     },
   ];
-
-  // Extended skill categories with detailed information
-  skills: SkillCategory[] = [
-    {
-      name: 'Frontend',
-      icon: 'assets/icons/Frontend.svg',
-      level: 95,
-      description:
-        'I specialize in building responsive, accessible, and performant user interfaces. My approach combines clean, semantic HTML, modern CSS techniques, and JavaScript frameworks to create engaging experiences that work across all devices.',
-      techStack: [
-        {
-          name: 'Javascript',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
-          proficiency: 100,
-        },
-        {
-          name: 'TypeScript',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-plain.svg',
-          proficiency: 90,
-        },
-        {
-          name: 'React',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
-          proficiency: 75,
-        },
-        {
-          name: 'Angular',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg',
-          proficiency: 90,
-        },
-        {
-          name: 'CSS/SCSS',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
-          proficiency: 90,
-        },
-        {
-          name: 'Tailwind',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
-          proficiency: 75,
-        },
-        {
-          name: 'Jest',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg',
-          proficiency: 85,
-        },
-        {
-          name: 'Vitest',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg',
-          proficiency: 60,
-        },
-      ],
-    },
-    {
-      name: 'Backend',
-      icon: 'assets/icons/Backend.svg',
-      level: 65,
-      description:
-        'I build robust, scalable backend systems with a focus on clean architecture, API design, and efficient data handling. My experience spans from RESTful services to real-time applications.',
-      techStack: [
-        {
-          name: 'Node.js',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
-          proficiency: 85,
-        },
-        {
-          name: 'C# .NET',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg',
-          proficiency: 75,
-        },
-        {
-          name: 'Redux',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg',
-          proficiency: 80,
-        },
-        {
-          name: 'PostgreSQL',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-plain.svg',
-          proficiency: 70,
-        },
-        {
-          name: 'GraphQL',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg',
-          proficiency: 65,
-        },
-        {
-          name: 'Python',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-plain.svg',
-          proficiency: 60,
-        },
-        {
-          name: 'Kotlin',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg',
-          proficiency: 50,
-        },
-        {
-          name: 'MySql',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg',
-          proficiency: 50,
-        },
-      ],
-    },
-    {
-      name: 'Server',
-      icon: 'assets/icons/Database.svg',
-      level: 50,
-      description:
-        'I have experience with cloud infrastructure, deployment pipelines, and server management. I focus on creating reliable, secure, and efficient hosting environments for web applications.',
-      techStack: [
-        {
-          name: 'AWS',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
-          proficiency: 75,
-        },
-        {
-          name: 'Docker',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain.svg',
-          proficiency: 55,
-        },
-        {
-          name: 'Kubernetes',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg',
-          proficiency: 30,
-        },
-        {
-          name: 'MongoDB',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg',
-          proficiency: 65,
-        },
-        {
-          name: 'ArgoCD',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/argocd/argocd-original.svg',
-          proficiency: 50,
-        },
-        {
-          name: 'Terraform',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg',
-          proficiency: 35,
-        },
-        {
-          name: 'Azure',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg',
-          proficiency: 50,
-        },
-        {
-          name: 'Linux',
-          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg',
-          proficiency: 60,
-        },
-      ],
-    },
-    {
-      name: 'Soft Skills',
-      icon: 'assets/icons/SoftSkills.svg',
-      level: 90,
-      description:
-        'Beyond technical abilities, I bring strong communication, collaboration, and problem-solving skills to every team. I believe that great software is built by people who work well together.',
-      techStack: [
-        {
-          name: 'Communication',
-          icon: 'assets/icons/Communication.svg',
-          proficiency: 95,
-        },
-        {
-          name: 'Teamwork',
-          icon: 'assets/icons/Teamwork.svg',
-          proficiency: 90,
-        },
-        {
-          name: 'Problem Solving',
-          icon: 'assets/icons/ProblemSolving.svg',
-          proficiency: 95,
-        },
-        {
-          name: 'Agile/Scrum',
-          icon: 'assets/icons/AgileProcess.svg',
-          proficiency: 85,
-        },
-        {
-          name: 'Leadership',
-          icon: 'assets/icons/Leadership.svg',
-          proficiency: 80,
-        },
-        {
-          name: 'Mentoring',
-          icon: 'assets/icons/Mentoring.svg',
-          proficiency: 85,
-        },
-        {
-          name: 'Time Management',
-          icon: 'assets/icons/TimeManagement.svg',
-          proficiency: 80,
-        },
-        {
-          name: 'Adaptability',
-          icon: 'assets/icons/Adapt.svg',
-          proficiency: 90,
-        },
-      ],
-    },
-  ];
-
-  particlesOptions = {
-    fullScreen: {
-      enable: false, // Disable full screen to keep within section
-      zIndex: 0,
-    },
-    particles: {
-      number: {
-        value: 100,
-      },
-      color: {
-        value: '#ffffff',
-      },
-      links: {
-        enable: true,
-        distance: 100,
-        color: '#ffffff',
-        opacity: 0.4,
-        width: 1,
-      },
-      move: {
-        enable: true,
-        speed: 1,
-      },
-      shape: {
-        type: 'circle',
-      },
-      opacity: {
-        value: 0.5,
-      },
-      size: {
-        value: {
-          min: 2,
-          max: 3,
-        },
-      },
-    },
-    background: {
-      color: 'transparent',
-    },
-  };
-
   selectedProject: Project | null = null;
-  animationState = 'in'; // 'in' or 'out'
 
-  // Modal control properties
-  selectedSkill: SkillCategory | null = null;
-  skillAnimationState: 'in' | 'out' = 'in';
-  constructor(
-    private readonly ngParticlesService: NgParticlesService,
-    private viewportScroller: ViewportScroller,
-  ) {}
-
-  openModal(project: Project) {
-    this.selectedProject = project;
-    this.animationState = 'in';
+  // Scroll to section handler
+  scrollToSection(section: string) {
+    const el = document.getElementById(section);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
-  closeModal() {
-    this.animationState = 'out';
-
-    setTimeout(() => {
-      this.selectedProject = null;
-    }, 200); // Matches fade-out duration
-  }
-
-  @HostListener('document:keydown.escape', ['$event'])
-  handleEscapeKey(event: KeyboardEvent): void {
-    this.closeModal();
-  }
-
-  ngAfterViewInit(): void {
-    // Scroll spy: highlight navbar links
-    const sectionIds = ['hero', 'about', 'projects', 'contact'];
-
-    // Two seperate observers means no clashing on the page elements
-    const scrollSpyObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = entry.target.getAttribute('id');
-          const link = document.querySelector(`.nav-link[href="#${id}"]`);
-
-          if (entry.isIntersecting && link) {
-            document.querySelectorAll('.nav-link').forEach((el) => {
-              el.classList.remove('text-blue-400');
-            });
-            link.classList.add('text-blue-400');
-          }
-        });
-      },
-      {
-        rootMargin: '-50% 0px -49% 0px',
-        threshold: 0.01,
-      },
-    );
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) scrollSpyObserver.observe(el);
-    });
-
-    // Skills animation on scroll
-    const skillObserver = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-slide-up');
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-      },
-    );
-
-    this.skillCards.forEach((el) => skillObserver.observe(el.nativeElement));
-  }
-
-  ngOnInit(): void {
-    this.ngParticlesService.init(async () => {
-      await loadFull(tsParticles);
-
-      await tsParticles.load({
-        id: 'tsparticles', // Matches the div id in HTML
-        ...this.particlesOptions,
-      });
-    });
-  }
-
-  particlesLoaded(container: Container): void {
-    console.log(container);
-  }
-
-  scrollToSection(sectionId: string): void {
-    this.viewportScroller.scrollToAnchor(sectionId);
-  }
-
-  /***Modal functions for About Section */
-
-  // Modal methods
-  openSkillModal(skill: SkillCategory): void {
+  // About section modal handlers
+  openSkillModal(skill: SkillCategory) {
     this.selectedSkill = skill;
     this.skillAnimationState = 'in';
-    document.body.classList.add('overflow-hidden'); // Prevent scrolling when modal is open
   }
 
-  closeSkillModal(): void {
+  closeSkillModal() {
     this.skillAnimationState = 'out';
     setTimeout(() => {
       this.selectedSkill = null;
-      document.body.classList.remove('overflow-hidden');
-    }, 300); // Match this to your animation duration
+      this.skillAnimationState = '';
+    }, 200); // Match your fade-out animation duration
   }
+
+  // Projects section modal handlers
+  openModal(project: Project) {
+    this.selectedProject = project;
+  }
+
+  closeModal() {
+    this.selectedProject = null;
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(event: KeyboardEvent) {
+    if (this.selectedSkill) {
+      this.closeSkillModal();
+    }
+    if (this.selectedProject) {
+      this.closeModal();
+    }
+  }
+
+  ngOnInit(): void {
+    // Initialize skillCategories, particlesOptions, etc.
+  }
+
+  ngAfterViewInit(): void {}
 }

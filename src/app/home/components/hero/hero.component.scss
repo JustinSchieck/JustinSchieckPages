@@ -1,0 +1,69 @@
+#landing {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+
+  // Mobile: stack vertically
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
+    min-height: unset;
+  }
+}
+
+.glass-card {
+  background: rgba(31, 41, 55, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 2.5rem;
+}
+
+h1,
+h2,
+p {
+  color: #e5e7eb;
+}
+
+a:hover {
+  color: #a855f7;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background: linear-gradient(270deg, #818cf8, #a855f7, #6366f1, #818cf8);
+  background-size: 600% 600%;
+  animation: gradientShift 8s ease infinite;
+}

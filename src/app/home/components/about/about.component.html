@@ -1,0 +1,71 @@
+<section
+  id="about"
+  class="scroll-mt-20 py-16 px-6 sm:px-12 bg-gradient-to-b from-[#1a1a25] to-[#11111a] text-gray-200 border-t border-gray-800"
+>
+  <div
+    class="min-h-[70vh] flex flex-col md:flex-row justify-between items-center gap-12 max-w-8xl mx-auto"
+  >
+    <!-- Left: Description -->
+    <div class="md:w-1/2 space-y-6">
+      <h2 class="text-3xl font-bold text-primary mb-4">About Me</h2>
+      <p class="text-lg leading-relaxed">
+        <!-- Add your about text here -->
+      </p>
+      <p class="text-lg leading-relaxed">
+        <!-- More about text -->
+      </p>
+      <p class="text-lg leading-relaxed">
+        <!-- More about text -->
+      </p>
+    </div>
+
+    <!-- Right: Skill Cards -->
+    <div class="md:w-1/2 grid grid-cols-2 gap-8">
+      <div
+        *ngFor="let skill of skillCategories"
+        (click)="openSkillModal.emit(skill)"
+        class="card cursor-pointer"
+      >
+        <!-- Skill card content here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Skill Detail Modal -->
+  <div
+    *ngIf="selectedSkill"
+    class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
+    (click)="closeSkillModal.emit()"
+  >
+    <div
+      class="bg-gray-900 text-white rounded-lg p-8 max-w-2xl w-full text-left relative shadow-xl transform scale-95 opacity-0 animate-fade-in overflow-y-auto max-h-[90vh]"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
+        (click)="closeSkillModal.emit()"
+      >
+        &times;
+      </button>
+      <!-- Modal Header -->
+      <div class="flex items-center mb-6">
+        <!-- Modal header content -->
+      </div>
+      <!-- Description -->
+      <p class="text-gray-300 mb-6">
+        <!-- Modal description -->
+      </p>
+      <!-- Proficiency Level -->
+      <div class="mb-8">
+        <!-- Modal proficiency -->
+      </div>
+      <!-- Tech Stack Grid -->
+      <h4 class="text-xl font-semibold mb-4 text-primary-light">
+        <!-- Modal tech stack title -->
+      </h4>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+        <!-- Modal tech stack grid -->
+      </div>
+    </div>
+  </div>
+</section>
