@@ -1,22 +1,7 @@
 <main>
   <app-header (sectionScroll)="scrollToSection($event)"></app-header>
-  <app-hero
-    [id]="id"
-    [particlesOptions]="particlesOptions"
-    [particlesLoaded]="particlesLoaded"
-  ></app-hero>
-  <app-about
-    [skillCategories]="skillCategories"
-    [selectedSkill]="selectedSkill"
-    [skillAnimationState]="skillAnimationState"
-    (openSkillModal)="openSkillModal($event)"
-    (closeSkillModal)="closeSkillModal()"
-  ></app-about>
-  <app-projects
-    [projects]="projects"
-    [selectedProject]="selectedProject"
-    (openModal)="openModal($event)"
-    (closeModal)="closeModal()"
-  ></app-projects>
+  <app-hero (sectionScroll)="scrollToSection($event)"></app-hero>
+  <app-about [skillCategories]="skillCategories"></app-about>
+  <app-projects [projects]="projects"></app-projects>
   <app-footer [currentYear]="currentYear"></app-footer>
 </main>

@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+interface Project {
+  title: string;
+  image?: string;
+  description: string;
+  link?: string;
+}
 
 @Component({
   selector: 'app-projects',
@@ -6,8 +13,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent {
-  @Input() projects: any[] = [];
-  @Input() selectedProject: any;
-  @Output() openModal = new EventEmitter<any>();
-  @Output() closeModal = new EventEmitter<void>();
+  @Input() projects: Project[] = [];
+
+  selectedProject: Project | null = null;
+
+  openModal(project: Project) {
+    this.selectedProject = project;
+  }
+
+  closeModal() {
+    this.selectedProject = null;
+  }
 }

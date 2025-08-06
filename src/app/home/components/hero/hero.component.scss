@@ -1,17 +1,10 @@
+@use "sass:math";
+
 #landing {
   position: relative;
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-}
-
-#tsparticles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
 }
 
 .hero-container {
@@ -24,7 +17,6 @@
   align-items: center;
   justify-content: center;
 
-  // Mobile: stack vertically
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 2rem;
@@ -48,6 +40,7 @@ p {
 
 a:hover {
   color: #a855f7;
+  cursor: pointer;
 }
 
 @keyframes gradientShift {
@@ -62,8 +55,88 @@ a:hover {
   }
 }
 
-.animate-gradient {
-  background: linear-gradient(270deg, #818cf8, #a855f7, #6366f1, #818cf8);
-  background-size: 600% 600%;
-  animation: gradientShift 8s ease infinite;
+.text-accent {
+  font-family: "The Moniktun Personal Use", sans-serif;
+  letter-spacing: 0.25rem;
+  color: #8b25ea; /* Accent color for emphasis */
 }
+
+/* #region Background Animation */
+
+$total: 200;
+$time: 10s;
+
+html,
+body,
+.wrap {
+  height: 100%;
+}
+
+.wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  z-index: 2;
+}
+
+.tri {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: white;
+
+  /* Trail effect using box-shadow */
+  //   &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: inherit;
+  //   opacity: 0.7;
+  //   transform: translate(-2px, -2px);
+  // }
+
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: inherit;
+  //   opacity: 0.4;
+  //   transform: translate(-4px, -4px);
+  // }
+}
+
+@for $i from 1 through $total {
+  $size: random(8) + 2px; // Smaller size range for squares (2-10px)
+  $rotate: random(360) * 1deg;
+  .tri:nth-child(#{$i}) {
+    width: $size;
+    height: $size;
+    background: hsla(random(360), 100%, 50%, 1);
+    margin-left: math.div(-$size, 2);
+    margin-top: math.div(-$size, 2);
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    transform: rotate($rotate) translate3d(0, 0, -1500px) scale(0);
+    animation: anim#{$i} $time infinite linear;
+    animation-delay: $i * math.div(-$time, $total);
+    opacity: 0;
+  }
+
+  @keyframes anim#{$i} {
+    0% {
+      opacity: 1;
+      transform: rotate($rotate * 1.5)
+        translate3d(random(1000) * 1px, random(1000) * 1px, 1000px) scale(1);
+    }
+  }
+}
+
+/* #endregion */

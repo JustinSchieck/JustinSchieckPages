@@ -3,69 +3,107 @@
   class="scroll-mt-20 py-16 px-6 sm:px-12 bg-gradient-to-b from-[#1a1a25] to-[#11111a] text-gray-200 border-t border-gray-800"
 >
   <div
-    class="min-h-[70vh] flex flex-col md:flex-row justify-between items-center gap-12 max-w-8xl mx-auto"
+    class="about-container min-h-[70vh] flex flex-col md:flex-row justify-between items-center gap-12 max-w-8xl mx-auto"
   >
     <!-- Left: Description -->
-    <div class="md:w-1/2 space-y-6">
+    <div class="about-description md:w-1/2 space-y-6">
       <h2 class="text-3xl font-bold text-primary mb-4">About Me</h2>
       <p class="text-lg leading-relaxed">
-        <!-- Add your about text here -->
+        I'm passionate about creating software that makes a difference. Whether
+        you're looking for a developer to join your team or collaborate on a
+        project, you'll find my blend of technical expertise and creative
+        problem-solving valuable. Explore my work below or reach out
+        directly—I'm always up for an interesting conversation about tech.
       </p>
       <p class="text-lg leading-relaxed">
-        <!-- More about text -->
+        My favorite work blends creative design with technical depth—whether
+        it's building beautiful UI components, designing scalable APIs, or
+        automating workflows with cloud tools like AWS.
       </p>
       <p class="text-lg leading-relaxed">
-        <!-- More about text -->
+        Outside of code, I enjoy solving tricky UX problems, mentoring devs, and
+        constantly learning new patterns and tech.
       </p>
     </div>
 
     <!-- Right: Skill Cards -->
-    <div class="md:w-1/2 grid grid-cols-2 gap-8">
+    <div class="about-skills md:w-1/2 grid grid-cols-2 gap-8">
       <div
         *ngFor="let skill of skillCategories"
-        (click)="openSkillModal.emit(skill)"
-        class="card cursor-pointer"
+        class="card animate-slide-up flex flex-col items-center p-6 rounded-lg bg-gray-800/50 backdrop-blur-md shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
+        #skillCard
+        (click)="openSkillModal(skill)"
       >
-        <!-- Skill card content here -->
+        <div class="relative w-24 h-24 mb-4">
+          <svg class="absolute top-0 left-0 w-full h-full">
+            <circle
+              cx="50%"
+              cy="50%"
+              r="36"
+              stroke="#e5e7eb"
+              stroke-width="6"
+              fill="none"
+            />
+            <circle
+              cx="50%"
+              cy="50%"
+              r="36"
+              [attr.stroke-dasharray]="226"
+              [attr.stroke-dashoffset]="226 - (skill.level / 100) * 226"
+              stroke="#a855f7"
+              stroke-width="6"
+              fill="none"
+              stroke-linecap="round"
+              class="transition-all duration-700"
+            />
+          </svg>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img
+              [src]="skill.icon"
+              [alt]="skill.name"
+              class="w-12 h-12 text-white"
+            />
+          </div>
+        </div>
+        <p class="text-lg font-semibold text-primary-light">
+          {{ skill.name }}
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- Skill Detail Modal -->
-  <div
-    *ngIf="selectedSkill"
-    class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
-    (click)="closeSkillModal.emit()"
-  >
-    <div
-      class="bg-gray-900 text-white rounded-lg p-8 max-w-2xl w-full text-left relative shadow-xl transform scale-95 opacity-0 animate-fade-in overflow-y-auto max-h-[90vh]"
-      (click)="$event.stopPropagation()"
-    >
-      <button
-        class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
-        (click)="closeSkillModal.emit()"
-      >
-        &times;
-      </button>
-      <!-- Modal Header -->
+  <!-- Reusable Modal for Skill Details -->
+  <app-modal [open]="!!selectedSkill" (close)="closeSkillModal()">
+    <ng-container *ngIf="selectedSkill">
       <div class="flex items-center mb-6">
-        <!-- Modal header content -->
+        <img
+          [src]="selectedSkill.icon"
+          [alt]="selectedSkill.name"
+          class="w-12 h-12 mr-4"
+        />
+        <h3 class="text-2xl font-bold">{{ selectedSkill.name }}</h3>
       </div>
-      <!-- Description -->
-      <p class="text-gray-300 mb-6">
-        <!-- Modal description -->
-      </p>
-      <!-- Proficiency Level -->
+      <p class="text-gray-300 mb-6">{{ selectedSkill.description }}</p>
       <div class="mb-8">
-        <!-- Modal proficiency -->
+        <span class="font-semibold text-primary-light">Proficiency:</span>
+        <span class="ml-2">{{ selectedSkill.level }}%</span>
       </div>
-      <!-- Tech Stack Grid -->
-      <h4 class="text-xl font-semibold mb-4 text-primary-light">
-        <!-- Modal tech stack title -->
-      </h4>
+      <h4 class="text-xl font-semibold mb-4 text-primary-light">Tech Stack</h4>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
-        <!-- Modal tech stack grid -->
+        <div
+          *ngFor="let tech of selectedSkill.techStack"
+          class="flex flex-col items-center"
+        >
+          <img [src]="tech.icon" [alt]="tech.name" class="w-10 h-10 mb-2" />
+          <span class="text-sm">{{ tech.name }}</span>
+          <span
+            class="text-xs text-gray-400"
+            *ngIf="tech.proficiency !== undefined"
+          >
+            {{ tech.proficiency }}%
+          </span>
+        </div>
       </div>
-    </div>
-  </div>
+    </ng-container>
+  </app-modal>
 </section>

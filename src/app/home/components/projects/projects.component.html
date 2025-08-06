@@ -3,26 +3,54 @@
   class="scroll-mt-20 py-24 px-6 sm:px-12 bg-[#11111a] text-white border-t border-gray-700"
 >
   <div
-    class="min-h-[80vh] flex items-start md:items-center justify-center flex-col max-w-7xl mx-auto"
+    class="projects-container min-h-[80vh] flex items-start md:items-center justify-center flex-col max-w-7xl mx-auto"
   >
-    <h2 class="text-3xl font-bold mb-10 text-primary">Projects</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+    <h2 class="projects-title text-3xl font-bold mb-10 text-primary">
+      Projects
+    </h2>
+    <div class="projects-grid">
       <div
         *ngFor="let project of projects"
-        class="relative group cursor-pointer"
-        (click)="openModal.emit(project)"
+        class="project-card group"
+        (click)="openModal(project)"
       >
-        <!-- Project card with conditional rendering -->
-        <div
-          *ngIf="project.image"
-          class="w-full h-80 overflow-hidden rounded-lg shadow-lg"
-        >
+        <!-- If project has an image -->
+        <div *ngIf="project.image" class="mb-4 relative">
           <img
             [src]="project.image"
             [alt]="project.title"
-            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            class="w-full object-cover rounded-lg"
           />
+          <!-- Hover overlay for desktop -->
+          <div
+            class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none sm:flex"
+          >
+            <span class="text-white text-xl font-bold text-center px-4">
+              {{ project.title }}
+            </span>
+          </div>
+          <!-- Always show title below image for mobile -->
+          <h3 class="text-xl font-semibold text-center mb-2 mt-2 sm:hidden">
+            <ng-container *ngIf="project.link; else plainTitleImg">
+              <a
+                [href]="project.link"
+                target="_blank"
+                rel="noopener"
+                class="text-primary hover:underline"
+                (click)="$event.stopPropagation()"
+              >
+                {{ project.title }}
+              </a>
+            </ng-container>
+            <ng-template #plainTitleImg>
+              <span class="text-primary hover:underline">
+                {{ project.title }}
+              </span>
+            </ng-template>
+          </h3>
         </div>
+
+        <!-- If project does NOT have an image -->
         <div
           *ngIf="!project.image"
           class="w-full h-80 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-lg flex items-center justify-center p-6 transition-transform duration-300 group-hover:scale-105 border border-gray-700"
@@ -31,31 +59,32 @@
             <div class="text-primary text-5xl mb-4">
               <i class="fa-solid fa-code"></i>
             </div>
-            <h3 class="text-white text-2xl font-semibold">
-              {{ project.title }}
+            <h3 class="text-xl font-semibold text-center mb-2">
+              <ng-container *ngIf="project.link; else plainTitleNoImg">
+                <a
+                  [href]="project.link"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-primary hover:underline"
+                  (click)="$event.stopPropagation()"
+                >
+                  {{ project.title }}
+                </a>
+              </ng-container>
+              <ng-template #plainTitleNoImg>
+                <span class="text-primary hover:underline">
+                  {{ project.title }}
+                </span>
+              </ng-template>
             </h3>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Project Modal -->
-    <div
-      *ngIf="selectedProject"
-      class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
-      (click)="closeModal.emit()"
-    >
-      <div
-        class="bg-gray-900 text-white rounded-lg p-8 max-w-2xl w-full text-left relative shadow-xl transform scale-95 opacity-0 animate-fade-in overflow-y-auto max-h-[90vh]"
-        (click)="$event.stopPropagation()"
-      >
-        <button
-          class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
-          (click)="closeModal.emit()"
-        >
-          &times;
-        </button>
-        <!-- Modal content: title, description, image, link, etc. -->
+    <!-- Reusable Modal for Project Details -->
+    <app-modal [open]="!!selectedProject" (close)="closeModal()">
+      <ng-container *ngIf="selectedProject">
         <div class="mb-6">
           <h3 class="text-2xl font-bold mb-2">{{ selectedProject.title }}</h3>
           <p class="mb-4">{{ selectedProject.description }}</p>
@@ -75,7 +104,7 @@
             View Project
           </a>
         </div>
-      </div>
-    </div>
+      </ng-container>
+    </app-modal>
   </div>
 </section>

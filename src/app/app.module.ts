@@ -12,6 +12,7 @@ import { AboutComponent } from './home/components/about/about.component';
 import { HeaderComponent } from './home/components/header/header.component';
 import { HeroComponent } from './home/components/hero/hero.component';
 import { ProjectsComponent } from './home/components/projects/projects.component';
+import { ModalComponent } from './home/components/shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProjectsComponent } from './home/components/projects/projects.component
     HeaderComponent,
     HeroComponent,
     ProjectsComponent,
+    ModalComponent,
   ],
   imports: [CommonModule, BrowserModule, AppRoutingModule, NgxParticlesModule],
   providers: [],

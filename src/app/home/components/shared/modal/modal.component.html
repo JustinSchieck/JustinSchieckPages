@@ -1,0 +1,15 @@
+<div *ngIf="open" class="modal-backdrop" (click)="onClose()">
+  <div
+    class="modal-content {{ customClass }}"
+    (click)="$event.stopPropagation()"
+  >
+    <button
+      class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
+      (click)="onClose($event)"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>

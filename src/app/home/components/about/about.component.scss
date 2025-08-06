@@ -9,10 +9,58 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, #a855f7 0%, transparent 70%);
-  opacity: 0.08;
+  background-image: url("../../../../assets/diagmonds-light.png");
+  opacity: 0.1; /* Very subtle effect */
   z-index: 0;
   pointer-events: none;
+}
+
+#about > .about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.about-description,
+.about-skills {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.about-description {
+  margin-right: 2rem;
+}
+
+.about-skills {
+  margin-left: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  #about > .about-container {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 0 1rem;
+    align-items: center; // Center items on mobile
+  }
+  .about-description,
+  .about-skills {
+    margin: 0;
+    width: 100%;
+    max-width: 500px;
+  }
+  .about-skills {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .card {
@@ -21,16 +69,13 @@
   box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.25);
   padding: 1.5rem;
   cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.3s ease;
   position: relative;
   z-index: 1;
 }
 
 .card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.25);
+  transform: scale(1.05);
 }
 
 .animate-slide-up {
@@ -40,7 +85,7 @@
 @keyframes slide-up {
   0% {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
@@ -48,50 +93,15 @@
   }
 }
 
-/* Modal styles */
-.modal-backdrop {
-  background: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: #181825;
-  color: #e5e7eb;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  max-width: 32rem;
-  width: 100%;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  position: relative;
-  animation: fade-in 0.3s ease-out forwards;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-@keyframes fade-in {
+@keyframes gradientShift {
   0% {
-    opacity: 0;
-    transform: scale(0.95);
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes fade-out-modal {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.95);
+    background-position: 0% 50%;
   }
 }
 
