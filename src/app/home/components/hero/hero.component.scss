@@ -63,7 +63,7 @@ a:hover {
 
 /* #region Background Animation */
 
-$total: 200;
+$total: 50;
 $time: 10s;
 
 html,
@@ -84,59 +84,20 @@ body,
 }
 
 .tri {
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 2px;
   position: absolute;
   top: 50%;
   left: 50%;
   background: white;
+  border-radius: 50%;
+  opacity: 0;
 
-  /* Trail effect using box-shadow */
-  //   &::before {
-  //   content: "";
-  //   position: absolute;
-  //   width: 100%;
-  //   height: 100%;
-  //   background: inherit;
-  //   opacity: 0.7;
-  //   transform: translate(-2px, -2px);
-  // }
-
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-  //   width: 100%;
-  //   height: 100%;
-  //   background: inherit;
-  //   opacity: 0.4;
-  //   transform: translate(-4px, -4px);
-  // }
-}
-
-@for $i from 1 through $total {
-  $size: random(8) + 2px; // Smaller size range for squares (2-10px)
-  $rotate: random(360) * 1deg;
-  .tri:nth-child(#{$i}) {
-    width: $size;
-    height: $size;
-    background: hsla(random(360), 100%, 50%, 1);
-    margin-left: math.div(-$size, 2);
-    margin-top: math.div(-$size, 2);
-    -webkit-filter: grayscale(1);
-    filter: grayscale(1);
-    transform: rotate($rotate) translate3d(0, 0, -1500px) scale(0);
-    animation: anim#{$i} $time infinite linear;
-    animation-delay: $i * math.div(-$time, $total);
-    opacity: 0;
-  }
-
-  @keyframes anim#{$i} {
-    0% {
-      opacity: 1;
-      transform: rotate($rotate * 1.5)
-        translate3d(random(1000) * 1px, random(1000) * 1px, 1000px) scale(1);
-    }
-  }
+  /* Star glow effect */
+  box-shadow:
+    0 0 4px currentColor,
+    0 0 8px currentColor,
+    0 0 12px currentColor;
 }
 
 /* #endregion */
