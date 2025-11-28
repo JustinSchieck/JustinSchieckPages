@@ -60,9 +60,16 @@ a:hover {
   cursor: pointer;
 }
 
+.text-begin {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
 .text-accent {
-  font-family: "The Moniktun Personal Use", sans-serif;
-  letter-spacing: 0.25rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
   color: #8b25ea; /* Accent color for emphasis */
 }
 
