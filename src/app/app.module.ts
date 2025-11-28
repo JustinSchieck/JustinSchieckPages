@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { CommonModule } from '@angular/common';
-import { NgxParticlesModule } from '@tsparticles/angular';
 import { FooterComponent } from './home/components/footer/footer.component';
 import { AboutComponent } from './home/components/about/about.component';
 import { HeaderComponent } from './home/components/header/header.component';
@@ -14,7 +13,6 @@ import { HeroComponent } from './home/components/hero/hero.component';
 import { ProjectsComponent } from './home/components/projects/projects.component';
 import { ModalComponent } from './home/components/shared/modal/modal.component';
 import { SocialsIconsComponent } from './home/components/shared/socials-icons/socials-icons.component';
-import { Background } from '@tsparticles/engine';
 import { BackgroundAnimationComponent } from './home/components/background-animation/background-animation.component';
 
 @NgModule({
@@ -30,7 +28,7 @@ import { BackgroundAnimationComponent } from './home/components/background-anima
     SocialsIconsComponent,
     BackgroundAnimationComponent,
   ],
-  imports: [CommonModule, BrowserModule, AppRoutingModule, NgxParticlesModule],
+  imports: [CommonModule, BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
