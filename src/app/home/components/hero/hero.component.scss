@@ -20,7 +20,9 @@
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 2rem;
-    min-height: unset;
+    min-height: 100vh; // Changed from 'unset' to maintain full height
+    justify-content: flex-start; // Align content from top
+    padding-top: 6rem; // Additional top padding for mobile header
   }
 }
 
@@ -30,6 +32,21 @@
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   padding: 2.5rem;
+
+  @media (max-width: 768px) {
+    text-align: center;
+
+    // Center the button container
+    > div {
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    // Center flex containers within
+    .flex {
+      justify-content: center;
+    }
+  }
 }
 
 h1,
@@ -43,61 +60,19 @@ a:hover {
   cursor: pointer;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .text-accent {
   font-family: "The Moniktun Personal Use", sans-serif;
   letter-spacing: 0.25rem;
   color: #8b25ea; /* Accent color for emphasis */
 }
 
-/* #region Background Animation */
-
-$total: 50;
-$time: 10s;
-
-html,
-body,
-.wrap {
-  height: 100%;
+// Mobile image styling
+img {
+  @media (max-width: 768px) {
+    max-width: 250px !important; // Shrink on mobile
+    border-radius: 2rem !important; // More rounded on mobile
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
 }
-
-.wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  perspective: 800px;
-  z-index: 2;
-}
-
-.tri {
-  width: 2px;
-  height: 2px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: white;
-  border-radius: 50%;
-  opacity: 0;
-
-  /* Star glow effect */
-  box-shadow:
-    0 0 4px currentColor,
-    0 0 8px currentColor,
-    0 0 12px currentColor;
-}
-
-/* #endregion */

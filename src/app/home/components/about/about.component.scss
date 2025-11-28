@@ -10,7 +10,7 @@
   position: absolute;
   inset: 0;
   background-image: url("../../../../assets/diagmonds-light.png");
-  opacity: 0.1; /* Very subtle effect */
+  opacity: 0.2; /* Very subtle effect */
   z-index: 0;
   pointer-events: none;
 }
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 3rem;
-  max-width: 1100px;
+  max-width: 1400px; // Increased from 1100px for larger screens
   margin: 0 auto;
   padding: 0 2rem;
   width: 100%;
@@ -29,15 +29,16 @@
 
 .about-description,
 .about-skills {
-  flex: 1 1 0;
   min-width: 0;
 }
 
 .about-description {
+  flex: 1.5; // Give description 60% of the space
   margin-right: 2rem;
 }
 
 .about-skills {
+  flex: 1; // Skills take 40% of the space
   margin-left: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

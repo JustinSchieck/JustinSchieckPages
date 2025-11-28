@@ -13,6 +13,9 @@ import { HeaderComponent } from './home/components/header/header.component';
 import { HeroComponent } from './home/components/hero/hero.component';
 import { ProjectsComponent } from './home/components/projects/projects.component';
 import { ModalComponent } from './home/components/shared/modal/modal.component';
+import { SocialsIconsComponent } from './home/components/shared/socials-icons/socials-icons.component';
+import { Background } from '@tsparticles/engine';
+import { BackgroundAnimationComponent } from './home/components/background-animation/background-animation.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { ModalComponent } from './home/components/shared/modal/modal.component';
     HeroComponent,
     ProjectsComponent,
     ModalComponent,
+    SocialsIconsComponent,
+    BackgroundAnimationComponent,
   ],
   imports: [CommonModule, BrowserModule, AppRoutingModule, NgxParticlesModule],
   providers: [],

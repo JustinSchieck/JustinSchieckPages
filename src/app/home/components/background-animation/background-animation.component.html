@@ -1,0 +1,170 @@
+<div class="absolute inset-0 z-0 pointer-events-none opacity-80">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1920 1080"
+    preserveAspectRatio="xMidYMid slice"
+    class="w-full h-full"
+  >
+    <defs>
+      <linearGradient id="pulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color: #9b66ff; stop-opacity: 0.3" />
+        <stop offset="50%" style="stop-color: #b794f6; stop-opacity: 1" />
+        <stop offset="100%" style="stop-color: #9b66ff; stop-opacity: 0.3" />
+      </linearGradient>
+      <radialGradient id="glowGradient">
+        <stop offset="0%" style="stop-color: #b794f6; stop-opacity: 0.6" />
+        <stop offset="50%" style="stop-color: #9b66ff; stop-opacity: 0.4" />
+        <stop offset="100%" style="stop-color: #7f4dff; stop-opacity: 0" />
+      </radialGradient>
+    </defs>
+
+    <g id="circuit" stroke-width="2" fill="none" opacity="0.8">
+      <path
+        d="M 300,0 L 300,400 L 450,550 L 450,1080"
+        stroke="#9b66ff"
+        stroke-opacity="0.6"
+        stroke-dasharray="20 80"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="100"
+          to="0"
+          dur="12s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M 800,0 L 800,300 L 950,450 L 950,1080"
+        stroke="#9b66ff"
+        stroke-opacity="0.6"
+        stroke-dasharray="30 70"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="100"
+          to="0"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M 0,200 L 600,200 L 800,400 L 1920,400"
+        stroke="#b794f6"
+        stroke-opacity="0.5"
+        stroke-dasharray="25 75"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="100"
+          to="0"
+          dur="15s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M 0,700 L 500,700 L 700,900 L 1920,900"
+        stroke="#b794f6"
+        stroke-opacity="0.5"
+        stroke-dasharray="20 80"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="100"
+          to="0"
+          dur="13s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M 1400,0 L 1400,500 L 1550,650 L 1550,1080"
+        stroke="#9b66ff"
+        stroke-opacity="0.6"
+        stroke-dasharray="35 65"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="100"
+          to="0"
+          dur="11s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <circle cx="300" cy="400" r="4" fill="#b794f6" opacity="0.8">
+        <animate
+          attributeName="opacity"
+          values="0.5;1;0.5"
+          dur="4s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="800" cy="300" r="4" fill="#b794f6" opacity="0.8">
+        <animate
+          attributeName="opacity"
+          values="0.5;1;0.5"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="1400" cy="500" r="4" fill="#b794f6" opacity="0.8">
+        <animate
+          attributeName="opacity"
+          values="0.5;1;0.5"
+          dur="4.5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </g>
+
+    <g id="glows">
+      <circle cx="400" cy="300" r="120" fill="url(#glowGradient)">
+        <animate
+          attributeName="cx"
+          values="400;450;400"
+          dur="20s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="cy"
+          values="300;250;300"
+          dur="25s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.3;0.6;0.3"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="1200" cy="600" r="150" fill="url(#glowGradient)">
+        <animate
+          attributeName="cx"
+          values="1200;1150;1200"
+          dur="22s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="cy"
+          values="600;650;600"
+          dur="18s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="1600" cy="200" r="100" fill="url(#glowGradient)">
+        <animate
+          attributeName="cx"
+          values="1600;1650;1600"
+          dur="24s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="cy"
+          values="200;280;200"
+          dur="20s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </g>
+  </svg>
+</div>
