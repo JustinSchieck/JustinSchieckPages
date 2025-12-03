@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'Developer Formatter Tools',
-    link: 'https://github.com/JustinSchieck/DeveloperFormatterTools',
+    link: 'https://github.com/JustinSchieck/JsonToAnyFormatter',
     description:
       'A PowerShell-based utility for converting JSON data into various file formats for API testing. Developed to provide a secure, local alternative to online formatting tools, ensuring data privacy and convenience. Was made as part of needing these tools frequently while working with APIs.',
   },
