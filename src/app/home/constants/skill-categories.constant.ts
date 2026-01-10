@@ -112,7 +112,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    name: 'Server',
+    name: 'Server Side',
     icon: 'assets/icons/Database.svg',
     level: 50,
     description:

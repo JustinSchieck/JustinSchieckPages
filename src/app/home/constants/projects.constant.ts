@@ -33,6 +33,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'Advent of Code 2025',
+    link: 'https://github.com/JustinSchieck/AdventOfCode2025#',
     description:
       'A collection of solutions for Advent of Code 2025 programming challenges. Built as a learning exercise to explore different algorithms, data structures, and problem-solving approaches while improving coding proficiency.',
   },
